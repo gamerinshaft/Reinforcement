@@ -26,3 +26,39 @@ app.on('ready', function() {
     mainWindow = null;
   });
 });
+
+
+var ActiveRecord = require('active_record');
+
+ActiveRecord.Base.configure_connection({
+  driver: 'mysql',
+  hostname: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '',
+  database: 'active_record'
+  pool: true,
+  'pool config': { min: 1, max: 20 }
+});
+
+module.exports = User
+/* Extends the module to ActiveRecord.Base */
+ActiveRecord.Base.extend(User, ActiveRecord.Base)
+/* Create the Class */
+function User (){
+  /* Initialize the instance variables */
+  this.initialize(arguments[0]);
+  /** Validations */
+  this.validates('name', {
+    presence: true,
+    length: { minimum: 6, maximum: 25 }
+  })
+  this.validate_length_of('password', {minimum: 5});
+  this.has_secure_password(); /* Call this function after another validations */
+}
+
+/* Configure the model */
+User.table_name = 'users';
+User.fields('name', 'password'); // Create dynamics finders: User.find_by_name, etc.
+/* Configure the Associations */
+User.has_many('phones');
