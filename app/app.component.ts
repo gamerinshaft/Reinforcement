@@ -1,13 +1,14 @@
 import {Component, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
+import {SidebarComponent} from './sidebar.component';
 import {HeroService} from './hero.service';
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css'],
-    directives: [HeroDetailComponent],
+    directives: [HeroDetailComponent, SidebarComponent],
     providers: [HeroService]
 })
 
