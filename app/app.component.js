@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-detail.component', './sidebar.component', './hero.service'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './hero-detail.component', './sidebar.component', './hero.service', './shipment.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(['angular2/core', './hero-detail.component', './sidebar.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_detail_component_1, sidebar_component_1, hero_service_1;
+    var core_1, router_1, hero_detail_component_1, sidebar_component_1, hero_service_1, shipment_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
@@ -23,6 +26,9 @@ System.register(['angular2/core', './hero-detail.component', './sidebar.componen
             },
             function (hero_service_1_1) {
                 hero_service_1 = hero_service_1_1;
+            },
+            function (shipment_component_1_1) {
+                shipment_component_1 = shipment_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -43,9 +49,12 @@ System.register(['angular2/core', './hero-detail.component', './sidebar.componen
                         selector: 'my-app',
                         templateUrl: 'app/app.component.html',
                         styleUrls: ['app/app.component.css'],
-                        directives: [hero_detail_component_1.HeroDetailComponent, sidebar_component_1.SidebarComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, hero_detail_component_1.HeroDetailComponent, sidebar_component_1.SidebarComponent],
                         providers: [hero_service_1.HeroService]
-                    }), 
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/shipment', name: 'Shipment', component: shipment_component_1.ShipmentComponent, useAsDefault: true }
+                    ]), 
                     __metadata('design:paramtypes', [hero_service_1.HeroService])
                 ], AppComponent);
                 return AppComponent;
